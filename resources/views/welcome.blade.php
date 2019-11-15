@@ -1,99 +1,50 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layout.app')
 
-        <title>Laravel</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+@section('content')
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+<sectoin class="hero-section">
+    <div class="overlay"></div>
+    <div class="content-wrapper col-6 col-md-12">
+        <h1 class="text-light">Here We <span class="text-primary">Go</span></h1>
+        <p class="text-light">Explore thousands of events on the most used events website in the world and create your
+            own with 100% anonymity granted</p>
+        <div class="btn-group">
+            <button><a href="/explore.html">Explore</a></button>
+            <button class="btn-border"><a href="/create.html">Create</a></button>
+        </div>
+    </div>
+</sectoin>
+<div class="features">
+    <div class="container">
+        <div class="row">
+            <div class="feature col-4 col-sm-12">
+                <h3 class="feature-header">Anonymity</h3><img class="feature-img" src="/images/feature-1.svg" />
+                <p class="feature-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare
+                    convallis nisi, a convallis nunc egestas vel. Nam malesuada sem id condimentum bibendum. Suspendisse
+                    venenatis sit amet lorem vel varius. Nulla facilisi</p>
+            </div>
+            <div class="feature col-4 col-sm-12">
+                <h3 class="feature-header">Free</h3><img class="feature-img" src="/images/feature-2.svg" />
+                <p class="feature-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare
+                    convallis nisi, a convallis nunc egestas vel. Nam malesuada sem id condimentum bibendum. Suspendisse
+                    venenatis sit amet lorem vel varius. Nulla facilisi</p>
+            </div>
+            <div class="feature col-4 col-sm-12">
+                <h3 class="feature-header">Cross The World</h3><img class="feature-img" src="/images/feature-3.svg" />
+                <p class="feature-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare
+                    convallis nisi, a convallis nunc egestas vel. Nam malesuada sem id condimentum bibendum. Suspendisse
+                    venenatis sit amet lorem vel varius. Nulla facilisi</p>
             </div>
         </div>
-    </body>
-</html>
+    </div>
+</div>
+<div id="particles-js"></div>
+@endsection
+
+
+@section('script')
+<script src="{{ asset('js/particles.min.js') }}"></script>
+<script>particlesJS.load('particles-js', "{{ asset('js/particlesjs-config.json') }}");</script>
+
+@endsection
