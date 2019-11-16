@@ -34,7 +34,7 @@
                 </div>
                 <div class="col">
                     <ul class="navbar-nav">
-                        <li> <a class="active" href="/explore.html">explore</a>
+                        <li> <a class="" href="/explore.html">explore</a>
                         </li>
                         <li> <a href="/create.html">create</a>
                         </li>
