@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\Comment;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -14,7 +15,15 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        $events = Event::paginate(10);
+
+        // Check if there are events
+        if($events->count()){
+            return view('explore', compact('events'));
+        } else {
+            // Return to empty page
+            return view('no-result', compact('events'));
+        }
     }
 
     /**
@@ -44,9 +53,18 @@ class EventController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+    public function show($id)
     {
-        //
+        try{
+            $event = Event::findOrFail($id);
+
+            // Get event comments
+            $comments = Comment::where('event_id', $event->id)->paginate(10);
+
+            return view('event', compact('event', 'comments'));
+        } catch (Exception $e){
+            return abort(404);
+        }
     }
 
     /**

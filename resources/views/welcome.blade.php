@@ -10,7 +10,7 @@
         <p class="text-light">Explore thousands of events on the most used events website in the world and create your
             own with 100% anonymity granted</p>
         <div class="btn-group">
-            <button><a href="/explore.html">Explore</a></button>
+            <button><a href="{{ route('explore') }}">Explore</a></button>
             <button class="btn-border"><a href="/create.html">Create</a></button>
         </div>
     </div>

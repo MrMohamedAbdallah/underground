@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+// Events routes
+Route::get('/explore', 'EventController@index')->name('explore');
+Route::get('/event/{id}', 'EventController@show')->name('event');
