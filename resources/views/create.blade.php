@@ -73,6 +73,11 @@
                         <div class="map" id="map"></div>
                     </div>
                     <div class="col-12">
+                        {{-- Recaptcha --}}
+                        @component('comps.recaptcha')
+                        @endcomponent
+                    </div>
+                    <div class="col-12">
                         <button type="submit">Submit</button>
                     </div>
                 </div>
@@ -119,4 +124,6 @@
 </script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key={!! env('map_key') !!}&callback=initMap">
 </script>
+{{-- Recaptcha --}}
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 @endsection

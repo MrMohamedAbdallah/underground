@@ -45,6 +45,8 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
+
         // Validate
         $request->validate([
             'title' => 'required|min:5',
@@ -52,7 +54,8 @@ class EventController extends Controller
             'lat'   => 'required|latlng:-90,90',
             'lng'   => 'required|latlng:-180,180',
             'date'  => 'required|date_format:Y-m-d\TH:i|after:+1 week',
-            'cover' => 'nullable|image|mimes:jpg,png,gif,jpeg'
+            'cover' => 'nullable|image|mimes:jpg,png,gif,jpeg',
+            'g-recaptcha-response'    => 'required|recaptcha'
         ]);
 
         // Upload the file if exits

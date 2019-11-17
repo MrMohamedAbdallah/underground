@@ -31,7 +31,8 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         // Rename validators
-        Validator::extend('latlng', 'App\Rules\LatLngValidator@passes');
-        Validator::extend('recaptcha', 'App\Rules\CaptchaValidator@passes');
+        Validator::extend('latlng', 'App\\Rules\\LatLngValidator@passes');
+        // Register the Recaptcha rule
+        Validator::extend('recaptcha', 'App\\Rules\\CaptchaValidator@passes');
     }
 }

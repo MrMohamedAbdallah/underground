@@ -40,7 +40,8 @@ class CommentController extends Controller
         $request->validate([
             'event' => 'required',
             'name'  => 'nullable|min:3',
-            'body'  => 'required|min:2'
+            'body'  => 'required|min:2',
+            'g-recaptcha-response'  => 'required|recaptcha'
         ]);
 
         try{

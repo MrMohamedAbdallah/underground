@@ -3,6 +3,7 @@
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
+
 use GuzzleHttp\Client;
 
 
@@ -28,17 +29,17 @@ class CaptchaValidator implements Rule
     public function passes($attribute, $value)
     {
         $client = new Client();
-
-        $result = $client->post('https://www.google.com/recaptcha/api/siteverify', [
-            'form_paramas' => [
-                'secret'    => env('re_private'),
-                'response'  => $value
+        $res = $client->post('https://www.google.com/recaptcha/api/siteverify', [
+            'form_params' => [
+                'secret' => env('re_private'),
+                'response' => $value
             ]
         ]);
 
-        // Response message
-        $body = json_decode($result->getBody());
+        // Body
+        $body = json_decode($res->getBody());
 
+        // Return wheather it's succeded or not
         return $body->success;
     }
 
@@ -49,6 +50,6 @@ class CaptchaValidator implements Rule
      */
     public function message()
     {
-        return 'Invalid value.';
+        return 'Please check the recaptch box.';
     }
 }

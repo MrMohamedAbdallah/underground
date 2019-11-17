@@ -36,26 +36,29 @@
             <input type="hidden" name="event" value="{{ $event->id }}">
             <div class="form-group col-12">
                 <label for="name">Name</label>
-                <input 
-                    type="text" 
-                    name="name" 
-                    id="name" 
-                    placeholder="Anonymous" 
-                    value="{{ old('name') }}"
+                <input type="text" name="name" id="name" placeholder="Anonymous" value="{{ old('name') }}"
                     class="@error('name') is-invalid @enderror" />
-                    @error('name')
-                    <span class="invalid-feedback">{{ $message }}</span>
-                    @enderror
-                    <span class="invalid-feedback"></span>
+                @error('name')
+                <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
+                <span class="invalid-feedback"></span>
             </div>
             <div class="form-group col-12">
                 <label for="body">Comment</label>
-                <textarea rows="5" name="body" id="body" class="@error('body') is-invalid @enderror">{{ old('body') }}</textarea>
+                <textarea rows="5" name="body" id="body"
+                    class="@error('body') is-invalid @enderror">{{ old('body') }}</textarea>
                 @error('body')
                 <span class="invalid-feedback">{{ $message }}</span>
                 @enderror
                 <span class="invalid-feedback"></span>
             </div>
+            <div class="col-12">
+                {{-- Recaptcha --}}
+                @component('comps.recaptcha')
+                @endcomponent
+                {{-- /Recaptcha --}}
+            </div>
+
             <div class="col-12">
                 <button type="submit">Submit</button>
             </div>
@@ -96,8 +99,9 @@
             });
         }
 </script>
-<script async defer
-    src="https://maps.googleapis.com/maps/api/js?key={!! env('map_key') !!}&callback=initMap">
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={!! env('map_key') !!}&callback=initMap">
 </script>
+{{-- Recaptcha --}}
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 @endsection
