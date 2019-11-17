@@ -14,7 +14,7 @@
             @foreach($events as $event)
             <div class="card">
                 @if($event->cover)
-                <div class="card-img"><img src="{{ $event->cover }}" /></div>
+                <div class="card-img"><img src="/storage/{{ $event->cover }}" /></div>
                 @endif
                 <div class="card-body">
                     <h3 class="card-header"> <a href="{{ route("event", $event->id) }}">{{ $event->title }}</a></h3>

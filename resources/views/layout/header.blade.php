@@ -36,7 +36,7 @@
                     <ul class="navbar-nav">
                         <li> <a class="" href="{{ route('explore') }}">explore</a>
                         </li>
-                        <li> <a href="/create.html">create</a>
+                        <li> <a href="{{ route('event.create') }}">create</a>
                         </li>
                     </ul>
                 </div>

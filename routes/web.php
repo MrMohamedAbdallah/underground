@@ -19,3 +19,6 @@ Route::get('/', function () {
 // Events routes
 Route::get('/explore', 'EventController@index')->name('explore');
 Route::get('/event/{id}', 'EventController@show')->name('event');
+Route::get('/create', 'EventController@create')->name('event.create');
+Route::post('/create', 'EventController@store')->name('event.store');
+

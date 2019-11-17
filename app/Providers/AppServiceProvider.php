@@ -6,6 +6,8 @@ use Illuminate\Support\ServiceProvider;
 
 use Illuminate\Support\Facades\Schema;
 
+use Illuminate\Support\Facades\Validator;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -27,5 +29,9 @@ class AppServiceProvider extends ServiceProvider
     {
         // Setting default string length for xampp DB
         Schema::defaultStringLength(191);
+
+        // Rename validators
+        Validator::extend('latlng', 'App\Rules\LatLngValidator@passes');
+        Validator::extend('recaptcha', 'App\Rules\CaptchaValidator@passes');
     }
 }

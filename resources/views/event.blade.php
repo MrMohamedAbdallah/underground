@@ -21,7 +21,7 @@
         </div>
         <div class="event">
             @if($event->cover)
-            <div class="event-img"><img src="{{ $event->cover }}" /></div>
+            <div class="event-img"><img src="/storage/{{ $event->cover }}" /></div>
             @endif
             <div class="event-title">{{ $event->title }}</div>
             <div class="event-text">{{ $event->description }}</div>
@@ -83,7 +83,7 @@
         }
 </script>
 <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6b1Mzn4SFLrouYfAyngU_jqAc2mDoHWE&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key={!! env('map_key') !!}&callback=initMap">
 </script>
 
 @endsection
