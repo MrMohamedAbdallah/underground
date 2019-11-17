@@ -63,6 +63,9 @@ class CommentController extends Controller
             // Save the comment to DB;
             $comment->save();
             
+            // Increase the number of comments in the event data
+            $event->comments_number += 1;
+            $event->save();
             
             return redirect()->route('event', $event->id);
         } catch(Exception $e){

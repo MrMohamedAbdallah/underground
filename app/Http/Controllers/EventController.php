@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Event;
 use App\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
@@ -103,6 +104,37 @@ class EventController extends Controller
             $comments = Comment::where('event_id', $event->id)
                                 ->orderBy('created_at', 'DESC')
                                 ->paginate(10);
+
+
+            // ================================================
+            //      Increase the number of views
+            //      if the user didn't see it in that session
+            // ================================================
+            $visited = true;    // If the user visited that event indecator
+            $sessionEvents = Session::get('events') ? Session::get('events') : [];
+            if($sessionEvents){
+                // Check if there's the event id
+                if(!in_array($event->id, $sessionEvents)){
+                    $visited = false;
+                }
+            } else {
+                $visited = false;
+            }
+
+            // dd($sessionEvents);
+            
+            // Increase the number
+            if(!$visited){
+                $sessionEvents = array_merge($sessionEvents, [$event->id]);
+                
+                // Store the new array in the session
+                Session::put('events', $sessionEvents);
+                // Add one to the number of views
+                $event->views_number += 1;
+                // Save changes
+                $event->save();
+            }
+
 
             return view('event', compact('event', 'comments'));
         } catch (Exception $e){
