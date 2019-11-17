@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Event;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -35,7 +36,37 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate
+        $request->validate([
+            'event' => 'required',
+            'name'  => 'nullable|min:3',
+            'body'  => 'required|min:2'
+        ]);
+
+        try{
+
+            $eventID = $request->event;
+
+            // Find the event
+            $event = Event::where('date', '>', 'NOW()')
+                            ->where('id', $eventID)
+                            ->firstOrFail();
+
+            // Create new comment
+            $comment = new Comment();
+
+            $comment->name = $request->name ? $request->name : 'Anonymous';
+            $comment->body = $request->body;
+            $comment->event_id = $request->event;
+
+            // Save the comment to DB;
+            $comment->save();
+            
+            
+            return redirect()->route('event', $event->id);
+        } catch(Exception $e){
+            return abort(400);
+        }
     }
 
     /**

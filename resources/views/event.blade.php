@@ -31,16 +31,30 @@
         </div>
     </div>
     <div class="container">
-        <form class="row comment-form">
+        <form class="row comment-form" action="{{ route('comment.store') }}" method="POST">
+            @csrf
+            <input type="hidden" name="event" value="{{ $event->id }}">
             <div class="form-group col-12">
                 <label for="name">Name</label>
-                <input type="text" name="name" id="name" placeholder="Anonymous" /><span
-                    class="invalid-feedback">Something went wrong</span>
+                <input 
+                    type="text" 
+                    name="name" 
+                    id="name" 
+                    placeholder="Anonymous" 
+                    value="{{ old('name') }}"
+                    class="@error('name') is-invalid @enderror" />
+                    @error('name')
+                    <span class="invalid-feedback">{{ $message }}</span>
+                    @enderror
+                    <span class="invalid-feedback"></span>
             </div>
             <div class="form-group col-12">
                 <label for="body">Comment</label>
-                <textarea rows="5" name="body" id="body" placeholder=""></textarea><span
-                    class="invalid-feedback">Something went wrong</span>
+                <textarea rows="5" name="body" id="body" class="@error('body') is-invalid @enderror">{{ old('body') }}</textarea>
+                @error('body')
+                <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
+                <span class="invalid-feedback"></span>
             </div>
             <div class="col-12">
                 <button type="submit">Submit</button>

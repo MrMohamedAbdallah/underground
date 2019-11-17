@@ -97,7 +97,9 @@ class EventController extends Controller
             $event = Event::findOrFail($id);
 
             // Get event comments
-            $comments = Comment::where('event_id', $event->id)->paginate(10);
+            $comments = Comment::where('event_id', $event->id)
+                                ->orderBy('created_at', 'DESC')
+                                ->paginate(10);
 
             return view('event', compact('event', 'comments'));
         } catch (Exception $e){
