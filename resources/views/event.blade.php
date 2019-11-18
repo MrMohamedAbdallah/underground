@@ -5,10 +5,10 @@
 
 <section class="event-section">
     <ul class="timer">
-        <li> <span class="name">Day</span><span class="time">11:</span></li>
-        <li> <span class="name">Hours</span><span class="time">20:</span></li>
-        <li> <span class="name">Minutes</span><span class="time">30:</span></li>
-        <li> <span class="name">Months</span><span class="time">32</span></li>
+        <li> <span class="name">{{ __("app.day") }}</span><span class="time">11:</span></li>
+        <li> <span class="name">{{ __("app.hour") }}</span><span class="time">20:</span></li>
+        <li> <span class="name">{{ __("app.minute") }}</span><span class="time">30:</span></li>
+        <li> <span class="name">{{ __("app.second") }}</span><span class="time">32</span></li>
     </ul>
     <div class="event-map" id="map"> </div>
     <div class="container">
@@ -24,9 +24,9 @@
             <div class="event-img"><img src="/storage/{{ $event->cover }}" /></div>
             @endif
             <div class="event-title">{{ $event->title }}</div>
-            <div class="event-text">{{ $event->description }}</div>
-            <div class="btn-left">
-                <button data-comment="data-comment">Add Comment</button>
+            <pre class="event-text">{{ $event->description }}</pre>
+            <div class="btn-right">
+                <button data-comment="data-comment">{{ __("app.add comment") }}</button>
             </div>
         </div>
     </div>
@@ -35,7 +35,7 @@
             @csrf
             <input type="hidden" name="event" value="{{ $event->id }}">
             <div class="form-group col-12">
-                <label for="name">Name</label>
+                <label for="name">{{ __("app.name") }}</label>
                 <input type="text" name="name" id="name" placeholder="Anonymous" value="{{ old('name') }}"
                     class="@error('name') is-invalid @enderror" />
                 @error('name')
@@ -44,7 +44,7 @@
                 <span class="invalid-feedback"></span>
             </div>
             <div class="form-group col-12">
-                <label for="body">Comment</label>
+                <label for="body">{{ __("app.comment") }}</label>
                 <textarea rows="5" name="body" id="body"
                     class="@error('body') is-invalid @enderror">{{ old('body') }}</textarea>
                 @error('body')
@@ -60,7 +60,7 @@
             </div>
 
             <div class="col-12">
-                <button type="submit">Submit</button>
+                <button type="submit">{{ __("app.submit") }}</button>
             </div>
         </form>
         <div class="comments">
@@ -70,7 +70,7 @@
                     <span class="comment-name">{{ $comment->name }}</span>
                     <span class="comment-date">{{ $comment->created_at->diffForHumans() }}</span>
                 </div>
-                <p class="comment-text">{{ $comment->body }}</p>
+                <pre class="comment-text">{{ $comment->body }}</pre>
             </div>
             @endforeach
         </div>

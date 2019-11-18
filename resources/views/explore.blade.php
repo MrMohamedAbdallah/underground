@@ -1,10 +1,12 @@
 @extends('layout.app')
 
+@section('title'){{__("app.explore the world")}}@endsection
+
 
 @section('content')
 
 <section class="cards clear-fix">
-    <div class="heading">Explore The World Events</div>
+    <div class="heading">{{__("app.explore the world")}}</div>
     <div class="container">
         <div class="grid">
             <div class="grid-col grid-col--1"></div>

@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{App::getLocale()}}">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="icon" href="/favicon.png" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&amp;display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" />
     <link rel="stylesheet" href="{{ asset("/css/all.min.css") }}" />
     <link rel="stylesheet" href="{{ asset("/css/style.min.css") }}" />
-    <title>Underground</title>
+    <title>@hasSection('title')@yield('title') | @endif{{ __("app.underground") }}</title>
 </head>
 
 <body>
@@ -30,19 +30,41 @@
                                     letter-spacing="-0.194em">
                                     <tspan x="0" y="0">UG</tspan>
                                 </text>
-                            </svg></a></div>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
                 <div class="col">
                     <ul class="navbar-nav">
-                        <li> <a class="" href="{{ route('explore') }}">explore</a>
+                        <li>
+                            <a class="{{ request()->routeIs('explore') ? 'active' : '' }}"
+                                href="{{ route('explore') }}">{{ __("app.explore")}}</a>
                         </li>
-                        <li> <a href="{{ route('event.create') }}">create</a>
+                        <li>
+                            <a class="{{ request()->routeIs('event.create') ? 'active' : '' }}"
+                                href="{{ route('event.create') }}">{{ __("app.create") }}</a>
+                        </li>
+                        <li class="langs"><span><i class="fas fa-globe-africa"></i></span>
+                            <ul class="dropdown">
+                                @if(app()->getLocale() == 'ar')
+                                <li class="active">العربية</li>
+                                @else 
+                                <li><a href="{{ route('lang', 'ar') }}">العربية</a></li>
+                                @endif
+                                {{--============================= --}}
+                                {{--============================= --}}
+                                @if(app()->getLocale() == 'en')
+                                <li class="active">English</li>
+                                @else 
+                                <li><a href="{{ route('lang', 'en') }}">English</a></li>
+                                @endif                                
+                            </ul>
                         </li>
                     </ul>
                 </div>
                 <div class="col-2 col-md-4 col-sm-12">
                     <form class="nav-form" method="GET" action="">
-                        <input type="text" name="query" id="query" placeholder="Search" />
+                        <input type="text" name="query" id="query" placeholder="{{ __("app.search") }}" />
                         <button class="icon"><i class="fas fa-search icon"></i></button>
                     </form>
                 </div>

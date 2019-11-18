@@ -1,11 +1,13 @@
 @extends('layout.app')
 
 
+@section('title') {{__("app.create new event")}} @endsection
+
 
 @section('content')
 
 <div class="create-event">
-    <h1 class="heading">Create New Event</h1>
+    <h1 class="heading">{{ __("app.create new event") }}</h1>
     <div class="container">
         <div class="row">
             <form class="create-event-form col-8 col-md-12 mx-auto" method="POST" action="{{ route('event.store') }}"
@@ -14,7 +16,7 @@
                 @csrf
                 <div class="row">
                     <div class="form-group col-12">
-                        <label for="title">Title</label>
+                        <label for="title">{{ __("app.title") }}</label>
                         <input type="text" name="title" id="title" value="{{ old('title') }}"
                             class="@error('title') is-invalid @enderror" />
                         @error('title')
@@ -23,7 +25,7 @@
                         <span class="invalid-feedback"></span>
                     </div>
                     <div class="form-group col-12">
-                        <label for="description">Description</label>
+                        <label for="description">{{ __("app.description") }}</label>
                         <textarea rows="5" name="description" id="description"
                             class="@error('description') is-invalid @enderror">{{ old('description') }}</textarea>
                         @error('description')
@@ -32,7 +34,7 @@
                         <span class="invalid-feedback"></span>
                     </div>
                     <div class="form-group col-6 col-md-12">
-                        <label for="lat">Latitude</label>
+                        <label for="lat">{{ __("app.lat") }}</label>
                         <input type="number" name="lat" id="lat" step="0.000000000000001" value="{{ old('lat') }}"
                             class="@error('lat') is-invalid @enderror" />
                         @error('lat')
@@ -41,7 +43,7 @@
                         <span class="invalid-feedback"></span>
                     </div>
                     <div class="form-group col-6 col-md-12">
-                        <label for="lng">Longitude</label>
+                        <label for="lng">{{ __("app.lng") }}</label>
                         <input type="number" name="lng" id="lng" step="0.000000000000001" value="{{ old('lng') }}"
                             class="@error('lng') is-invalid @enderror" />
                         @error('lng')
@@ -50,7 +52,7 @@
                         <span class="invalid-feedback"></span>
                     </div>
                     <div class="form-group col-6 col-md-12">
-                        <label for="date">Date</label>
+                        <label for="date">{{ __("app.date") }}</label>
                         <input type="datetime-local" name="date" id="date" value="{{ old('date') }}"
                             class="@error('date') is-invalid @enderror" />
                         @error('date')
@@ -59,7 +61,7 @@
                         <span class="invalid-feedback"></span>
                     </div>
                     <div class="form-group col-6 col-md-12">
-                        <label for="cover">Cover</label>
+                        <label for="cover">{{ __("app.cover") }}</label>
                         <input type="file" name="cover" id="cover" data-value="#cover-value" />
                         <span data-file="#cover" class="file-placeholder @error('cover') is-invalid @enderror">Upload
                             Cover</span>
@@ -78,15 +80,13 @@
                         @endcomponent
                     </div>
                     <div class="col-12">
-                        <button type="submit">Submit</button>
+                        <button type="submit">{{ __("app.submit") }}</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
-
-
 @endsection
 
 
