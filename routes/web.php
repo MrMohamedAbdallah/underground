@@ -13,8 +13,6 @@
 
 // Group the route for lang middleware
 
-Route::group(['middleware' => 'lang'], function(){
-    
     Route::get('/', function () {
         return view('welcome');
     });
@@ -29,9 +27,9 @@ Route::group(['middleware' => 'lang'], function(){
     // Comments
     Route::post('/comment/create', 'CommentController@store')->name('comment.store');
 
-});
 
 
+// Changing languages
 Route::get('/lang/{lang}', function($lang){
 
 
