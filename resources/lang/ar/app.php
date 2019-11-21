@@ -26,4 +26,6 @@
         'second' => 'ثوانى',
         'search' => 'أبحث',
         'submit' => 'أرسل',
+        'search title' => 'أبحث عن شئ اخر:',
+        'nothing found' => 'لم نجد لك شئ هنا',
     ];

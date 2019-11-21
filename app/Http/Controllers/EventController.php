@@ -29,6 +29,30 @@ class EventController extends Controller
     }
 
     /**
+     * Search with scout package and algolia api
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request){
+
+        $q = $request->get('query') ? $request->get('query') : null;
+        if($q == null){
+            return view("no-result");
+        }
+
+        $events = Event::search($q)->paginate();
+
+
+        if($events->count() == 0){
+            return view("no-result");
+        } else {
+            return view('explore', compact("events"));
+        }
+    }
+
+
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

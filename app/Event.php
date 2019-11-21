@@ -4,8 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+// Scout package for searching with algolia
+use Laravel\Scout\Searchable;
+
 class Event extends Model
 {
+    use Searchable;
+
+
     protected   $table = 'events',
                 $primaryKey = 'id',
                 $fillable = [

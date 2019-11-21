@@ -63,7 +63,7 @@
                     </ul>
                 </div>
                 <div class="col-2 col-md-4 col-sm-12">
-                    <form class="nav-form" method="GET" action="">
+                    <form class="nav-form" method="GET" action="{{ route("search") }}">
                         <input type="text" name="query" id="query" placeholder="{{ __("app.search") }}" />
                         <button class="icon"><i class="fas fa-search icon"></i></button>
                     </form>

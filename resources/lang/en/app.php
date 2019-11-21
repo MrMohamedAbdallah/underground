@@ -26,4 +26,6 @@
         'second' => 'Seconds',
         'search' => 'Search',
         'submit' => 'Submit',
+        'search title' => 'Try to search for something:',
+        'nothing found' => 'Submit',
     ];
