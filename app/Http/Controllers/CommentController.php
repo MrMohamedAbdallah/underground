@@ -6,6 +6,8 @@ use App\Comment;
 use App\Event;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Session;
+
 class CommentController extends Controller
 {
     /**
@@ -66,6 +68,9 @@ class CommentController extends Controller
             // Increase the number of comments in the event data
             $event->comments_number += 1;
             $event->save();
+
+            // Flash messages
+            Session::flash('success', __('app.comment added'));
             
             return redirect()->route('event', $event->id);
         } catch(Exception $e){

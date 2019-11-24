@@ -7,8 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="icon" href="/favicon.png" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" />
-    <link rel="stylesheet" href="{{ asset("/css/all.min.css") }}" />
-    <link rel="stylesheet" href="{{ asset("/css/style.min.css") }}" />
+    <link rel="stylesheet" href="{{ asset("css/all.min.css") }}" />
+    <link rel="stylesheet" href="{{ asset("css/sweetalert2.min.css") }}" />
+    <link rel="stylesheet" href="{{ asset("css/style.min.css") }}" />
     <title>@hasSection('title')@yield('title') | @endif{{ __("app.underground") }}</title>
 </head>
 

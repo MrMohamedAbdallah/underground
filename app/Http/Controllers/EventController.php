@@ -109,6 +109,9 @@ class EventController extends Controller
         // Save the event
         $event->save();
 
+        // Flash messages
+        Session::flash('success', __('app.event created'));
+
         // Redirect to the event page
         return redirect()->route('event', $event->id);
     }

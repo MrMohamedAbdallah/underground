@@ -28,4 +28,7 @@
         'submit' => 'Submit',
         'search title' => 'Try to search for something:',
         'nothing found' => 'Submit',
+        'event created' => 'Event created successfully',
+        'comment added' => 'Comment added successfully',
+        'good job' => 'Good job',
     ];
