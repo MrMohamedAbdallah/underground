@@ -5,16 +5,16 @@
 
 <section class="event-section">
     <ul class="timer" id="timer" data-time="{{ strtotime($event->date) }}">
-        <li> 
+        <li>
             <span class="name">{{ __("app.day") }}</span>
             <span class="time" id="day">00:</span></li>
-        <li> 
+        <li>
             <span class="name">{{ __("app.hour") }}</span>
             <span class="time" id="hour">00:</span></li>
-        <li> 
+        <li>
             <span class="name">{{ __("app.minute") }}</span>
             <span class="time" id="min">00:</span></li>
-        <li> 
+        <li>
             <span class="name">{{ __("app.second") }}</span>
             <span class="time" id="sec">00</span></li>
     </ul>
@@ -34,12 +34,12 @@
             <div class="event-title">{{ $event->title }}</div>
             <pre class="event-text">{{ $event->description }}</pre>
             <div class="btn-right">
-                <button data-comment="data-comment">{{ __("app.add comment") }}</button>
+                <button data-open="#comment-form">{{ __("app.add comment") }}</button>
             </div>
         </div>
     </div>
     <div class="container">
-        <form class="row comment-form" action="{{ route('comment.store') }}" method="POST">
+        <form class="row comment-form hide-form" id="comment-form" action="{{ route('comment.store') }}" method="POST">
             @csrf
             <input type="hidden" name="event" value="{{ $event->id }}">
             <div class="form-group col-12">
@@ -85,6 +85,32 @@
     </div>
     {{-- Commments pagination --}}
     {{ $comments->links() }}
+
+    <div class="container">
+        <div class="btn-right">
+            <button data-open="#delete-form" class="bg-danger text-white">{{ __("app.delete") }}</button>
+        </div>
+        <form class="row hide-form" id="delete-form" action="{{ route('event.delete', $event->id) }}" method="POST">
+            @csrf
+            @method("DELETE")
+            <div class="form-group col-12">
+                <label for="password">{{ __("app.password") }}</label>
+                <input type="password" name="password" id="password"
+                    value="{{ old('password') }}" class="@error('password') is-invalid @enderror" min="6" />
+                @error('password')
+                <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
+                <span class="invalid-feedback"></span>
+            </div>
+            {{-- Recaptcha --}}
+            @component('comps.recaptcha')
+            @endcomponent
+            {{-- /Recaptcha --}}
+            <div class="col-12">
+                <button type="submit">{{ __("app.submit") }}</button>
+            </div>
+        </form>
+    </div>
 </section>
 
 

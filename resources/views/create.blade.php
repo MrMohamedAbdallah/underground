@@ -33,6 +33,15 @@
                         @enderror
                         <span class="invalid-feedback"></span>
                     </div>
+                    <div class="form-group col-12">
+                        <label for="password">{{ __("app.password") }}</label>
+                        <input type="text" name="password" id="password" value="{{ old('password') }}"
+                            class="@error('password') is-invalid @enderror" />
+                        @error('password')
+                        <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
+                        <span class="invalid-feedback"></span>
+                    </div>
                     <div class="form-group col-6 col-md-12">
                         <label for="lat">{{ __("app.lat") }}</label>
                         <input type="number" name="lat" id="lat" step="0.000000000000001" value="{{ old('lat') }}"

@@ -23,6 +23,8 @@ Route::get('/explore', 'EventController@index')->name('explore');
 Route::get('/event/{id}', 'EventController@show')->name('event');
 Route::get('/create', 'EventController@create')->name('event.create');
 Route::post('/create', 'EventController@store')->name('event.store');
+// Delete
+Route::delete('/delete/{id}', 'EventController@destroy')->name('event.delete');
 // Search
 Route::get('/search', 'EventController@search')->name('search');
 

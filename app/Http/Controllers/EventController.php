@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Event;
 use App\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller
 {
@@ -76,6 +78,7 @@ class EventController extends Controller
         $request->validate([
             'title' => 'required|min:5',
             'description' => 'required|min:3',
+            'password' => 'required|min:6',
             'lat'   => 'required|latlng:-90,90',
             'lng'   => 'required|latlng:-180,180',
             'date'  => 'required|date_format:Y-m-d\TH:i|after:+1 week',
@@ -99,6 +102,7 @@ class EventController extends Controller
         $event->title = $request->title;
         $event->description = $request->description;
         $event->lat = $request->lat;
+        $event->password = Hash::make($request->password);
         $event->lng = $request->lng;
         $event->date = $request->date;
         $event->cover = $filePath;
@@ -198,8 +202,39 @@ class EventController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
+    public function destroy(Request $request, $id)
     {
-        //
+        // Validate recaptcha
+        $request->validate([
+            'g-recaptcha-response'    => 'required|recaptcha'
+        ]);
+
+        $result = Validator::make($request->all(), [
+            'password' => 'required|min:6',
+        ]);
+        
+
+        try{
+            $event = Event::findOrFail($id);
+
+            if(!$result->fails() && Hash::check($request->password, $event->password)){
+                $filePath = 'public/' . $event->cover;
+
+                Storage::delete($filePath);
+
+
+                // Delete the evnet
+                $event->delete();
+
+                Session::flash('success', __('app.event deleted'));
+
+                return redirect()->route('explore');
+            } else {
+                Session::flash('failed', __('app.wrong password'));
+                return back();
+            }
+        } catch(Exception $e){
+            return abort(404);
+        }
     }
 }

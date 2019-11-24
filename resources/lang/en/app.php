@@ -16,6 +16,7 @@
         'name' => 'Name',
         'title' => 'Title',
         'description' => 'Description',
+        'password' => 'Password',
         'lat' => 'Latitude',
         'lng' => 'Longidude',
         'cover' => 'Cover',
@@ -31,4 +32,8 @@
         'event created' => 'Event created successfully',
         'comment added' => 'Comment added successfully',
         'good job' => 'Good job',
+        'delete'   => 'Delete',
+        'bad'   => 'Errors',
+        'wrong password' => 'The password is wrong',
+        'event deleted' => 'The event is deleted successfully',
     ];

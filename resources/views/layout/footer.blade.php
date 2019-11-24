@@ -23,6 +23,15 @@ Swal.fire(
 )
 </script>
 @endif
+@if(Session::has('failed'))
+<script>
+Swal.fire(
+  '{{ __("app.bad") }}',
+  '{{ Session::get('failed') }}',
+  'error'
+)
+</script>
+@endif
 
 
 
