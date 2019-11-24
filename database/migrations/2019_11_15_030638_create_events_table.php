@@ -22,6 +22,7 @@ class CreateEventsTable extends Migration
             $table->dateTime('date');
             $table->string('cover')->nullable();
             $table->string('password');
+            $table->text('slug');
             $table->integer('comments_number');
             $table->integer('views_number');
             $table->timestamps();

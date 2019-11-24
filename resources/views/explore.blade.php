@@ -19,7 +19,7 @@
                 <div class="card-img"><img src="/storage/{{ $event->cover }}" /></div>
                 @endif
                 <div class="card-body">
-                    <h3 class="card-header"> <a href="{{ route("event", $event->id) }}">{{ $event->title }}</a></h3>
+                    <h3 class="card-header"> <a href="{{ route("event", $event->slug) }}">{{ $event->title }}</a></h3>
                     <p class="card-text">
                         {{-- @dd($event->description) --}}
                         @if(strlen($event->description) > 200)

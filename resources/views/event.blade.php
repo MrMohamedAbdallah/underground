@@ -1,5 +1,6 @@
 @extends('layout.app')
 
+@section('title'){{ $event->title }}@endsection
 
 @section('content')
 

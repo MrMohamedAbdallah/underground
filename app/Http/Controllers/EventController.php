@@ -117,7 +117,7 @@ class EventController extends Controller
         Session::flash('success', __('app.event created'));
 
         // Redirect to the event page
-        return redirect()->route('event', $event->id);
+        return redirect()->route('event', $event->slug);
     }
 
     /**
@@ -126,10 +126,10 @@ class EventController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
         try{
-            $event = Event::findOrFail($id);
+            $event = Event::findBySlugOrFail($slug);
 
             // Get event comments
             $comments = Comment::where('event_id', $event->id)

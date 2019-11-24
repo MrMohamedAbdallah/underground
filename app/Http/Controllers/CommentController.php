@@ -72,7 +72,7 @@ class CommentController extends Controller
             // Flash messages
             Session::flash('success', __('app.comment added'));
             
-            return redirect()->route('event', $event->id);
+            return redirect()->route('event', $event->slug);
         } catch(Exception $e){
             return abort(400);
         }
