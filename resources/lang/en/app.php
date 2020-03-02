@@ -28,7 +28,7 @@
         'search' => 'Search',
         'submit' => 'Submit',
         'search title' => 'Try to search for something:',
-        'nothing found' => 'Submit',
+        'nothing found' => 'Nothing found',
         'event created' => 'Event created successfully',
         'comment added' => 'Comment added successfully',
         'good job' => 'Good job',
