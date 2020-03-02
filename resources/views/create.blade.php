@@ -18,7 +18,7 @@
                     <div class="form-group col-12">
                         <label for="title">{{ __("app.title") }}</label>
                         <input type="text" name="title" id="title" value="{{ old('title') }}"
-                            class="@error('title') is-invalid @enderror" />
+                            class="@error('title') is-invalid @enderror" autocomplete="off"/>
                         @error('title')
                         <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
@@ -35,8 +35,8 @@
                     </div>
                     <div class="form-group col-12">
                         <label for="password">{{ __("app.password") }}</label>
-                        <input type="text" name="password" id="password" value="{{ old('password') }}"
-                            class="@error('password') is-invalid @enderror" />
+                        <input type="password" name="password" id="password" value="{{ old('password') }}"
+                            class="@error('password') is-invalid @enderror" autocomplete="off"/>
                         @error('password')
                         <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
