@@ -44,16 +44,16 @@ _all text are lorem ipsum_
 ![Underground logo](design/logo.jpg)
 
 #### **Home**
-![Home Page](design/home.jpg)
+![Home Page](design/Home.jpg)
 
 #### **Explore**
-![Explore](design/explore.jpg)
+![Explore](design/Explore.jpg)
 
 #### **Create Event Page**
-![create event](design/create.jpg)
+![create event](design/Create.jpg)
 
 #### **Event**
-![Event](design/event.jpg)
+![Event](design/Event.jpg)
 
 See the design on 
 [Behance](https://www.behance.net/gallery/93142129/Underground)
